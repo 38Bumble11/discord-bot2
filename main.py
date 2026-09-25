@@ -114,7 +114,15 @@ async def check_youtube_loop():
                 print(f"YouTube check failed: {e}")
 
             await asyncio.sleep(CHECK_INTERVAL)
+# ---------- MENTION REPLY ----------
 
+@client.event
+async def on_message(message):
+    if message.author.bot:
+        return
+
+    if client.user in message.mentions:
+        await message.channel.send("The person you have pinged is busy now, please hold the ping.")
 
 # ---------- STARTUP ----------
 
